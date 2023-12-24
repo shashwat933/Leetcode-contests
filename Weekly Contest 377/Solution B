@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int maximizeSquareArea(int m, int n, vector<int>& hFences, vector<int>& vFences) {
+        int mod=1e9+7;
+        
+        if(m==n) return ((m-1)*(n-1))%mod;
+        long long int area=-1;
+       
+        
+        hFences.push_back(1);
+       
+        hFences.push_back(m);
+
+        vFences.push_back(1);
+        
+        vFences.push_back(n);
+        sort(hFences.begin() , hFences.end());
+        sort(vFences.begin() , vFences.end());
+        vector<int>length , breadth;
+        for(int i=0;i<hFences.size()-1;i++){
+            for(int j=i+1;j<hFences.size();j++){
+                length.push_back(hFences[j]-hFences[i]);
+            }
+        }
+        for(int i=0;i<vFences.size()-1;i++){
+            for(int j=i+1;j<vFences.size();j++){
+                breadth.push_back(vFences[j]-vFences[i]);
+            }
+        }
+        sort(breadth.begin(),breadth.end());
+        sort(length.begin(),length.end());
+      
+        int i=length.size()-1 , j=breadth.size()-1;
+        while(i>=0 && j>=0){
+            if(length[i]==breadth[j]){
+                long long area=1LL*length[i]*breadth[j];
+                return (area)%mod;
+            }
+            if(length[i]>breadth[j]){
+                i--;
+            } 
+            else j--;
+        }
+        return -1;
+     
+    }
+};
