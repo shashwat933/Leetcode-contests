@@ -8,7 +8,7 @@ Welcome to the repository where I share my solutions for various LeetCode contes
 This repository is a collection of my solutions to LeetCode contests. I participate in different contests to improve my problem-solving skills and share my approaches with the community. Feel free to explore the code and learn from it.
 
 
-Each contest folder contains solutions, explanations, and any additional resources related to that specific contest.
+Each contest folder contains solutions and any additional resources related to that specific contest.
 
 ## Folder Structure
 
