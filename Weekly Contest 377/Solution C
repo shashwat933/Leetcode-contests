@@ -1,0 +1,37 @@
+class Solution {
+public:
+    long long minimumCost(string source, string target, vector<char>& original, vector<char>& changed, vector<int>& cost) {
+        vector<vector<int>> checker(26,vector<int>(26,INT_MAX));
+        int n=original.size();
+        for(int i=0;i<n;i++){
+            int row=original[i] - 'a';
+            int col=changed[i] - 'a';
+            checker[row][col]=min(checker[row][col]  ,  cost[i]);
+            
+        }
+        for(int i=0;i<26;i++){
+            checker[i][i]=0;
+        }
+         n=26;
+	    for(int k=0;k<n;k++){
+	        for(int i=0;i<n;i++){
+	            for(int j=0;j<n;j++){
+	                if(i==k || j==k || checker[i][k]==INT_MAX || checker[k][j]==INT_MAX) continue;
+	                
+	                checker[i][j]=min(checker[i][j] , checker[i][k] + checker[k][j]);
+	            }
+	        }
+	    }
+        long long ans=0;
+        for(int i=0;i<source.size();i++){
+            int row=source[i] - 'a';
+            int col=target[i] - 'a';
+            if(checker[row][col]==INT_MAX) return -1;
+            ans+=checker[row][col];
+        }
+        return ans;
+        
+        
+        
+    }
+};
